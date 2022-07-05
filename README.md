@@ -299,3 +299,99 @@ That's it! Now go build something cool.
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Return all sent emails
+
+* **URL**
+
+  /emails/sent
+
+* **Method:**
+
+  `GET`
+
+* **URL Params**
+
+  There are no URL params
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+
+  ```json
+  {
+  "message": "Successfully retrieved emails",
+  "data": [
+    {
+      "id": "103",
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Ultrasonics",
+      "date_created": "2022-07-04 16:05:28",
+      "read": "1"
+    },
+    {
+      "id": "438",
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Equity Trading",
+      "date_created": "2022-07-04 16:05:26",
+      "read": "1"
+    }
+  ]
+  }
+  ```
+
+* **Error Response:**
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Return all deleted emails
+
+* **URL**
+
+  /emails/deleted
+
+* **Method:**
+
+  `GET`
+
+* **URL Params**
+
+  There are no URL params
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+
+  ```json
+  {
+  "message": "Successfully retrieved emails",
+  "data": [
+    {
+      "id": "103",
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Ultrasonics",
+      "date_created": "2022-07-04 16:05:28",
+      "read": "1"
+    },
+    {
+      "id": "438",
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Equity Trading",
+      "date_created": "2022-07-04 16:05:26",
+      "read": "1"
+    }
+  ]
+  }
+  ```
+
+* **Error Response:**
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`

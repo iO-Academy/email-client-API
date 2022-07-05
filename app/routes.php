@@ -28,6 +28,8 @@ return function (App $app) {
     });
 
     $app->get('/emails', '\Emails\Controllers\EmailController:getInboxEmails');
+    $app->get('/emails/sent', '\Emails\Controllers\EmailController:getSentEmails');
+    $app->get('/emails/deleted', '\Emails\Controllers\EmailController:getDeletedEmails');
     $app->get('/emails/{id}', '\Emails\Controllers\EmailController:getEmail');
     $app->put('/emails/{id}', '\Emails\Controllers\EmailController:readEmail');
     $app->post('/emails', '\Emails\Controllers\EmailController:sendEmail');

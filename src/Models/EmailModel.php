@@ -19,6 +19,18 @@ class EmailModel
         return $query->fetchAll();
     }
 
+    public function getDeletedEmails(): array
+    {
+        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, `date_created`, `read`, `sent` FROM `messages` WHERE `deleted` = 1 ORDER BY `date_created` DESC');
+        return $query->fetchAll();
+    }
+
+    public function getSentEmails(): array
+    {
+        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, `date_created`, `read` FROM `messages` WHERE `deleted` <> 1 AND `sent` = 1 ORDER BY `date_created` DESC');
+        return $query->fetchAll();
+    }
+
     public function searchEmails(string $searchQuery): array
     {
         $query = $this->db->prepare(

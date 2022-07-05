@@ -109,4 +109,28 @@ class EmailController extends Controller
         }
         return $this->respondWithJson($response, $data);
     }
+
+    public function getDeletedEmails(Request $request, Response $response)
+    {
+        $data = ['message' => 'Successfully retrieved emails', 'data' => []];
+        try {
+            $data['data'] = $this->emailModel->getDeletedEmails();
+        } catch (\Exception $e) {
+            $data['message'] = 'Unexpected error';
+            return $this->respondWithJson($response, $data, 500);
+        }
+        return $this->respondWithJson($response, $data);
+    }
+
+    public function getSentEmails(Request $request, Response $response)
+    {
+        $data = ['message' => 'Successfully retrieved emails', 'data' => []];
+        try {
+            $data['data'] = $this->emailModel->getSentEmails();
+        } catch (\Exception $e) {
+            $data['message'] = 'Unexpected error';
+            return $this->respondWithJson($response, $data, 500);
+        }
+        return $this->respondWithJson($response, $data);
+    }
 }
