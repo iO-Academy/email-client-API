@@ -93,7 +93,7 @@ That's it! Now go build something cool.
     * **Code:** 500 SERVER ERROR <br />
       **Content:** `{"message": "Unexpected error", "data": []}`
 
-### Return all jobs, optionally searched or filtered by URL parameters
+### Return specific email by id, optionally with replies
 
 * **URL**
 
@@ -115,7 +115,7 @@ That's it! Now go build something cool.
 
   **Example:**
 
-  `/emails?replies=0`
+  `/emails/98?replies=1`
 
 * **Success Response:**
 
