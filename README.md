@@ -1,25 +1,20 @@
-# Slim Framework 4 Skeleton Application
+# Emailclient RESTful API
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation along with the PHP-View template renderer. It also uses the Monolog logger.
+<details>
+<summary>Run the API locally</summary>
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
-
-## Install the Application
-
-Create a new directory with your project name, e.g:
-
+<p></p>
+<p>
+Clone this repo into your docker `html` folder:
 
 ```bash
-mkdir academyProject
+git clone git@github.com:iO-Academy/email-client-API.git
 ```
 
-Once inside the new directory, clone this repo:
+Once cloned, first install the database stored in `db/emails.sql`.
+Create a database named `emails`, then open the SQL file in your MySQL GUI and run all queries.
 
-```bash
-git clone git@github.com:Mayden-Academy/slim4-skeleton.git .
-```
-
-One cloned, you must install the slim components by running:
+After installing the database, install the vendor code by running the following from the root of the repo:
 
 ```bash
 composer install
@@ -28,11 +23,196 @@ composer install
 To run the application locally:
 ```bash
 composer start
+```
 
-```
-Run this command in the application directory to run the test suite
-```bash
-composer test
-```
+**Do not close this terminal tab, it is a running process.**
+
+The API will now be accessible at `http://localhost:8080/`.
 
 That's it! Now go build something cool.
+</p>
+</details>
+
+## API documentation
+
+### Return all email in the inbox, optionally searched by URL parameter
+
+* **URL**
+
+  /emails
+
+* **Method:**
+
+  `GET`
+
+* **URL Params**
+
+  **Required:**
+
+  There are no required URL params, this URL will return all emails if no params are passed
+
+  **Optional:**
+
+  `search=[alphanumeric]` - a search term which will search `sender_name`, `sender_email`, `subject` and `body`.
+
+  **Example:**
+
+  `/emails?search=code`
+
+* **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** <br />
+
+  ```json
+  {
+  "message": "Successfully retrieved emails",
+  "data": [
+    {
+      "id": "539",
+      "name": "Nickie Rusted",
+      "email": "nrustedey@people.com.cn",
+      "subject": "SDA",
+      "date_created": "2022-06-30 18:01:08",
+      "read": "1"
+    },
+    {
+      "id": "395",
+      "name": "Dallas Becaris",
+      "email": "dbecarisay@odnoklassniki.ru",
+      "subject": "IAR Embedded Workbench",
+      "date_created": "2022-06-24 07:22:48",
+      "read": "1"
+    }
+  ]
+  }
+  ```
+
+* **Error Response:**
+
+    * **Code:** 500 SERVER ERROR <br />
+      **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Return all jobs, optionally searched or filtered by URL parameters
+
+* **URL**
+
+  /emails/{id}
+
+* **Method:**
+
+  `GET`
+
+* **URL Params**
+
+  **Required:**
+
+  There are no required URL params
+
+  **Optional:**
+
+  `replies=[boolean]` - To include the chosen emails replies or not
+
+  **Example:**
+
+  `/emails?replies=0`
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+
+  ```json
+  {
+  "message": "Successfully retrieved email",
+  "data": {
+    "email": {
+      "id": "98",
+      "name": "Maryjo Ravenhill",
+      "email": "mravenhill2p@hugedomains.com",
+      "subject": "Biotechnology",
+      "date_created": "2022-01-14 04:05:28",
+      "body": "Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.\n\nDuis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+      "read": "1",
+      "reply_to": null,
+      "deleted": "0",
+      "sent": "0"
+    },
+    "reply": {
+      "id": "279",
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Claim",
+      "date_created": "2022-07-04 16:05:14",
+      "body": "Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.\n\nFusce consequat. Nulla nisl. Nunc nisl.",
+      "read": "1",
+      "reply_to": "98",
+      "deleted": "0",
+      "sent": "1"
+    }
+  }
+}
+  ```
+
+* **Error Response:**
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Send an email
+
+* **URL**
+
+  /emails
+
+* **Method:**
+
+  `POST`
+
+* **URL Params**
+
+  There are no URL params
+
+* **Body Data**
+
+Must be sent as JSON with the correct headers
+
+  **Required:**
+
+```json
+  {
+      "name": "Bob Ross",
+      "email": "bob.ross@paintings.com",
+      "subject": "Example",
+      "body": "Exmaple text",
+  }
+```
+  **Optional:**
+
+```json
+  {
+      "reply": 142
+  }
+```
+
+* **Success Response:**
+
+    * **Code:** 200 <br />
+      **Content:** <br />
+
+  ```json
+  {
+    "message": "Successfully sent email",
+    "data": {
+        "sent": true
+    }
+}
+  ```
+
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{"message": "Invalid email data", "data": {"sent": false}}`
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`

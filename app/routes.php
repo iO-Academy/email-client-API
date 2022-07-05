@@ -12,4 +12,8 @@ return function (App $app) {
         return $renderer->render($response, "index.php", $args);
     });
 
+    $app->get('/emails', '\Emails\Controllers\EmailController:getInboxEmails');
+    $app->get('/emails/{id}', '\Emails\Controllers\EmailController:getEmail');
+    $app->post('/emails', '\Emails\Controllers\EmailController:sendEmail');
+
 };
