@@ -2,11 +2,8 @@
 declare(strict_types=1);
 
 use Slim\App;
-use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
 return function (App $app) {
-    $container = $app->getContainer();
-
     // enable options requests
     $app->options('/{routes:.+}', function ($request, $response, $args) {
         return $response;
