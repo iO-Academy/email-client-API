@@ -1,4 +1,4 @@
-# Emailclient RESTful API
+# Email Client RESTful API
 
 <details>
 <summary>Run the API locally</summary>
