@@ -151,10 +151,13 @@ That's it! Now go build something cool.
       "sent": "1"
     }
   }
-}
+  }
   ```
 
 * **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{"message": "Invalid email id", "data": []}`
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
@@ -175,7 +178,7 @@ That's it! Now go build something cool.
 
 * **Body Data**
 
-Must be sent as JSON with the correct headers
+  Must be sent as JSON with the correct headers
 
   **Required:**
 
@@ -206,13 +209,93 @@ Must be sent as JSON with the correct headers
     "data": {
         "sent": true
     }
-}
+  }
   ```
 
 * **Error Response:**
 
   * **Code:** 400 BAD REQUEST <br />
     **Content:** `{"message": "Invalid email data", "data": {"sent": false}}`
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Delete an email
+
+* **URL**
+
+  /emails/{id}
+
+* **Method:**
+
+  `DELETE`
+
+* **URL Params**
+
+  There are no URL params
+
+* **Body Data**
+
+  There is no body data
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+
+  ```json
+  {
+    "message": "Successfully deleted email",
+    "data": {
+        "deleted": true
+    }
+  }
+  ```
+
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{"message": "Invalid email id", "data": {"deleted": false}}`
+
+  * **Code:** 500 SERVER ERROR <br />
+    **Content:** `{"message": "Unexpected error", "data": []}`
+
+### Mark an email as read
+
+* **URL**
+
+  /emails/{id}
+
+* **Method:**
+
+  `PUT`
+
+* **URL Params**
+
+  There are no URL params
+
+* **Body Data**
+
+  There is no body data
+
+* **Success Response:**
+
+  * **Code:** 200 <br />
+    **Content:** <br />
+
+  ```json
+  {
+    "message": "Successfully updated email",
+    "data": {
+        "updated": true
+    }
+  }
+  ```
+
+* **Error Response:**
+
+  * **Code:** 400 BAD REQUEST <br />
+    **Content:** `{"message": "Invalid email id", "data": {"updated": false}}`
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`

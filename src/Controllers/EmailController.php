@@ -37,10 +37,15 @@ class EmailController extends Controller
     {
         $data = ['message' => 'Successfully retrieved email', 'data' => []];
         try {
-            $data['data']['email'] = $this->emailModel->getEmailById($args['id']);
+            if (!empty($args['id']) && is_numeric($args['id'])) {
+                $data['data']['email'] = $this->emailModel->getEmailById($args['id']);
 
-            if (!empty($request->getQueryParams()['replies'])) {
-                $data['data']['reply'] = $this->emailModel->getReplies($args['id']);
+                if (!empty($request->getQueryParams()['replies'])) {
+                    $data['data']['reply'] = $this->emailModel->getReplies($args['id']);
+                }
+            } else {
+                $data['message'] = 'Invalid email id';
+                return $this->respondWithJson($response, $data, 400);
             }
 
         } catch (\Exception $e) {
@@ -60,6 +65,42 @@ class EmailController extends Controller
             } else {
                 $data['data']['sent'] = false;
                 $data['message'] = 'Invalid email data';
+                return $this->respondWithJson($response, $data, 400);
+            }
+        } catch (\Exception $e) {
+            $data['message'] = 'Unexpected error';
+            return $this->respondWithJson($response, $data, 500);
+        }
+        return $this->respondWithJson($response, $data);
+    }
+
+    public function deleteEmail(Request $request, Response $response, $args)
+    {
+        $data = ['message' => 'Successfully deleted email', 'data' => []];
+        try {
+            if (!empty($args['id']) && is_numeric($args['id'])) {
+                $data['data']['deleted'] = $this->emailModel->deleteEmail($args['id']);
+            } else {
+                $data['data']['deleted'] = false;
+                $data['message'] = 'Invalid email id';
+                return $this->respondWithJson($response, $data, 400);
+            }
+        } catch (\Exception $e) {
+            $data['message'] = 'Unexpected error';
+            return $this->respondWithJson($response, $data, 500);
+        }
+        return $this->respondWithJson($response, $data);
+    }
+
+    public function readEmail(Request $request, Response $response, $args)
+    {
+        $data = ['message' => 'Successfully updated email', 'data' => []];
+        try {
+            if (!empty($args['id']) && is_numeric($args['id'])) {
+                $data['data']['updated'] = $this->emailModel->readEmail($args['id']);
+            } else {
+                $data['data']['updated'] = false;
+                $data['message'] = 'Invalid email id';
                 return $this->respondWithJson($response, $data, 400);
             }
         } catch (\Exception $e) {

@@ -66,4 +66,16 @@ class EmailModel
             ':reply' => $email['reply'] ?? null
         ]);
     }
+
+    public function deleteEmail(int $id): bool
+    {
+        $query = $this->db->prepare('UPDATE `messages` SET `deleted` = 1 WHERE `id` = ?');
+        return $query->execute([$id]);
+    }
+
+    public function readEmail(int $id): bool
+    {
+        $query = $this->db->prepare('UPDATE `messages` SET `read` = 1 WHERE `id` = ?');
+        return $query->execute([$id]);
+    }
 }
