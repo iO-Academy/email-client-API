@@ -15,19 +15,19 @@ class EmailModel
 
     public function getInboxEmails(): array
     {
-        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50), `date_created`, `read` FROM `messages` WHERE `deleted` <> 1 AND `sent` <> 1 ORDER BY `date_created` DESC');
+        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50) AS "body", `date_created`, `read` FROM `messages` WHERE `deleted` <> 1 AND `sent` <> 1 ORDER BY `date_created` DESC');
         return $query->fetchAll();
     }
 
     public function getDeletedEmails(): array
     {
-        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50), `date_created`, `read`, `sent` FROM `messages` WHERE `deleted` = 1 ORDER BY `date_created` DESC');
+        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50) AS "body", `date_created`, `read`, `sent` FROM `messages` WHERE `deleted` = 1 ORDER BY `date_created` DESC');
         return $query->fetchAll();
     }
 
     public function getSentEmails(): array
     {
-        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50), `date_created`, `read` FROM `messages` WHERE `deleted` <> 1 AND `sent` = 1 ORDER BY `date_created` DESC');
+        $query = $this->db->query('SELECT `id`, `name`, `email`, `subject`, LEFT(`body`, 50) AS "body", `date_created`, `read` FROM `messages` WHERE `deleted` <> 1 AND `sent` = 1 ORDER BY `date_created` DESC');
         return $query->fetchAll();
     }
 
@@ -35,7 +35,7 @@ class EmailModel
     {
         $query = $this->db->prepare(
             'SELECT 
-                        `id`, `name`, `email`, `subject`, LEFT(`body`, 50), `date_created`, `read` 
+                        `id`, `name`, `email`, `subject`, LEFT(`body`, 50) AS "body", `date_created`, `read` 
                     FROM 
                         `messages` 
                     WHERE 
