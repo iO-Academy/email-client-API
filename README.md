@@ -73,6 +73,7 @@ That's it! Now go build something cool.
       "name": "Nickie Rusted",
       "email": "nrustedey@people.com.cn",
       "subject": "SDA",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-06-30 18:01:08",
       "read": "1"
     },
@@ -81,6 +82,7 @@ That's it! Now go build something cool.
       "name": "Dallas Becaris",
       "email": "dbecarisay@odnoklassniki.ru",
       "subject": "IAR Embedded Workbench",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-06-24 07:22:48",
       "read": "1"
     }
@@ -328,6 +330,7 @@ That's it! Now go build something cool.
       "name": "Bob Ross",
       "email": "bob.ross@paintings.com",
       "subject": "Ultrasonics",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-07-04 16:05:28",
       "read": "1"
     },
@@ -336,6 +339,7 @@ That's it! Now go build something cool.
       "name": "Bob Ross",
       "email": "bob.ross@paintings.com",
       "subject": "Equity Trading",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-07-04 16:05:26",
       "read": "1"
     }
@@ -376,6 +380,7 @@ That's it! Now go build something cool.
       "name": "Bob Ross",
       "email": "bob.ross@paintings.com",
       "subject": "Ultrasonics",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-07-04 16:05:28",
       "read": "1"
     },
@@ -384,6 +389,7 @@ That's it! Now go build something cool.
       "name": "Bob Ross",
       "email": "bob.ross@paintings.com",
       "subject": "Equity Trading",
+      "body": "first 50 characters of a description will go here.",
       "date_created": "2022-07-04 16:05:26",
       "read": "1"
     }
