@@ -1,5 +1,7 @@
 # Email Client RESTful API
 
+**For trainers:** The API is deployed at https://email-client-api.dev.io-academy.uk/, use this when deploying student-built front-end applications.
+
 <details>
 <summary>Run the API locally</summary>
 
