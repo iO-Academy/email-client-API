@@ -224,6 +224,27 @@ That's it! Now go build something cool.
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
 
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails', {
+    method: 'POST',
+    headers: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({
+        name: "Bob Ross",
+        email: "bob.ross@paintings.com",
+        subject: "Example",
+        body: "Exmaple text",
+      })
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
+
 ### Delete an email
 
 * **URL**
