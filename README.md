@@ -97,6 +97,16 @@ That's it! Now go build something cool.
     * **Code:** 500 SERVER ERROR <br />
       **Content:** `{"message": "Unexpected error", "data": []}`
 
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails?search=example search term')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
+
 ### Return specific email by id, optionally with replies
 
 * **URL**
@@ -165,6 +175,16 @@ That's it! Now go build something cool.
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
+
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails/1')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
 
 ### Send an email
 
@@ -285,6 +305,18 @@ That's it! Now go build something cool.
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
 
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails/1', {
+    method: 'DELETE'
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
+
 ### Mark an email as read
 
 * **URL**
@@ -324,6 +356,18 @@ That's it! Now go build something cool.
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
+
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails/1', {
+    method: 'PUT'
+  })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
 
 ### Return all sent emails
 
@@ -375,6 +419,16 @@ That's it! Now go build something cool.
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
 
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails/sent')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
+
 ### Return all deleted emails
 
 * **URL**
@@ -424,3 +478,13 @@ That's it! Now go build something cool.
 
   * **Code:** 500 SERVER ERROR <br />
     **Content:** `{"message": "Unexpected error", "data": []}`
+
+* **Example Request:**
+
+  ```js
+  fetch('https://email-client-api.dev.io-academy.uk/emails/deleted')
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+    })
+  ```
